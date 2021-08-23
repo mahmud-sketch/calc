@@ -31,7 +31,7 @@
             background-color: rgb(186, 236, 234);
             margin: 3px;
             text-align: center;
-            border-radius: 10%;
+            border-radius: 5px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -52,7 +52,7 @@
             <div class='btn' id='one'>1</div>
             <div class='btn' id='two'>2</div>
             <div class='btn' id='three'>3</div>
-            <div class='btn' id='multiply'>x</div>
+            <div class='btn' id='multiply'>*</div>
             <div class='btn' id='four'>4</div>
             <div class='btn' id='five'>5</div>
             <div class='btn' id='six'>6</div>
@@ -74,49 +74,34 @@
     <script>
 
         var btns = document.getElementsByClassName('btn');
-
         for (btn of btns) {
             btn.addEventListener('click', action);
         }
-
         function action(event) {
-
             var value = event.target.textContent;
+            var show = document.getElementById('show').innerText;
 
             if (value != 'AC' && value != 'DEL' && value != '=') {
-                var show = document.getElementById('show').innerText;
-
                 show += value;
-
                 document.getElementById('show').innerText = show;
-
-                console.log(typeof value);
-
             }
-
             switch (value) {
                 case 'AC':
+                    console.log(value);
                     document.getElementById('show').innerText = '';
+                    break;
                 case 'DEL':
-
                     var show = document.getElementById('show').innerText;
-
                     console.log(show[show.length - 1]);
-
-                    show -= show[show.length - 1];
-
+                    console.log(show);
+                    show = show.slice(0, show.length - 1);
+                    console.log(show);
                     document.getElementById('show').innerText = show;
-
-
+                    break;
+                case '=':
+                    document.getElementById('show').innerText = eval(show);
+                    break;
             }
-
-
-
-
-
-
-
-
         }
 
 
